@@ -1,0 +1,23 @@
+{
+  "name": "AISOD PAIED Program",
+  "short_name": "PAIED",
+  "description": "Practical AI Engineering & Development Program - Free AI training for Namibia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/images/aisod-institute-logo-new.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/aisod-institute-logo-new.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

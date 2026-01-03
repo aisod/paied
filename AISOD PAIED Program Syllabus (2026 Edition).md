@@ -1,0 +1,166 @@
+**AISOD PAIED Program Syllabus (2026 Edition)**
+
+**Program Name**: Practical AI Engineering & Development (PAIED) Program  
+ **Delivered by**: AISOD Institute  
+ **Launch Year**: 2026  
+ **Start Dates**:
+
+* **Non-workers cohort** (full-time learners, students, youth): January 6, 2026  
+* **Workers cohort** (part-time, professionals): February 7, 2026
+
+**Duration**: 9 Months (flexible pacing: 10–15 hours/week for non-workers; 8–12 hours/week for workers)  
+ **Format**: Online/Hybrid Vocational Program (self-paced modules, live webinars, mentorship, peer community)  
+ **Target Audience**: Absolute beginners with no prior coding or design experience — youth, school learners, women, career changers, working professionals, and entrepreneurs in Namibia and beyond. Basic computer literacy required.
+
+**Program Philosophy**: *"They may not believe the papers, but you will get paid for the working projects. Therefore, Learn by Building and Launching functioning projects in hours."*
+
+Success is measured **only** by completed, publicly published, and functioning projects (e.g., live websites, mobile apps, AI agents, GitHub repositories, design prototypes) — **not by exams or theory tests**. We use modern AI tools to simplify complex topics, enabling beginners to ship real products fast and prove their skills in the marketplace.
+
+**Key Outcomes**:
+
+* Build and launch multiple real-world AI-powered products (websites, mobile apps, automations, agents).  
+* Gain hands-on mastery of in-demand tools and languages.  
+* Develop a strong public portfolio of launched projects that attracts freelance clients, employers, or investors.  
+* Become capable of earning income through freelancing, selling digital products, or launching startups.
+
+**Prerequisites**: None — 100% beginner-friendly. AI tools bridge all gaps.  
+ **Ethical AI Commitment**: We teach and enforce responsible, ethical use of AI throughout the program (bias awareness, data privacy, transparency, originality in work).
+
+**Cost Structure (2026)**:
+
+* **School Learners (via AI Clubs)**: N$1,334 per learner (one-time or instalments)  
+* **Standard Individual**: N$200 per month  
+* **Free Access**: Included for all AISOD X Premium subscribers  
+* **Scholarships**: Available for underserved groups, women in tech, rural youth, and high-potential applicants
+
+**Preferred Technology Stack** (Core Focus):
+
+* **Mobile & Cross-Platform**: Flutter \+ Dart (primary)  
+* **Web Development**: Next.js \+ React  
+* **Alternative Mobile**: React Native  
+* **Backend & Database**: Supabase  
+* **AI & Scripting**: Python Other tools introduced as needed, but these are prioritized for simplicity, speed, and modern industry demand.
+
+**Assessment & Progression**:
+
+* Fully project-based.  
+* Each module ends with a **public launch milestone** (e.g., live URL, GitHub repo, app demo).  
+* Mentors review using clear rubrics (functionality, usability, ethical AI use, documentation).  
+* Progression is gated: Complete and publish the milestone to unlock the next module.  
+* No exams, no theory quizzes — real shipped work is the only proof.
+
+**Program Structure Overview (9 Months)**
+
+| Month | Module Title | Core Focus | Primary Tools | Key Skills Gained |
+| :---- | :---- | :---- | :---- | :---- |
+| 1 | AI Essentials & Foundations | AI concepts, prompting, ethical use | Grok/Claude, VS Code, GitHub | Prompt engineering, tool setup |
+| 2 | UI/UX Design & Graphics for Developers | Professional visuals and prototypes | Figma, AI image tools (ethical use) | User-centered design, prototyping |
+| 3 | AI-Powered Web Development | Responsive websites with AI features | Next.js, React, Supabase, Vercel | Full-stack web, deployment |
+| 4 | AI-Powered Mobile Development | Cross-platform mobile apps | Flutter \+ Dart (primary), Supabase | Mobile UI, state management, publishing |
+| 5 | Core Programming Mastery with AI | Deep dive into key languages | Python, Dart, JavaScript/TypeScript | Clean code, APIs, debugging with AI |
+| 6 | AI Agents & Automation Development | Autonomous agents and workflows | Python, LangChain, Supabase Functions | Agentic AI, multi-step automation |
+| 7 | Model Fine-Tuning & Customization | Adapting LLMs ethically | Python, Hugging Face, LoRA | Custom models, domain adaptation |
+| 8 | Advanced AI Integrations | Real-world connections (MCP, APIs) | Supabase, APIs, MCP protocols | Secure integrations, scaling |
+| 9 | Capstone Projects, Portfolio & Career Launch | Full products \+ professional launch | All tools \+ freelancing platforms | End-to-end builds, pitching, earning |
+
+**Detailed Module Breakdown**
+
+**Month 1: AI Essentials & Foundations**
+
+* **Objectives**: Build confidence in AI; master ethical prompting; set up professional environment.  
+* **Weekly Breakdown**:  
+  * Week 1: What AI can do in 2026; agentic AI trends; Namibia opportunities.  
+  * Week 2: Advanced prompt engineering (chain-of-thought, role-playing).  
+  * Week 3: Ethical AI use (bias, privacy, plagiarism avoidance).  
+  * Week 4: Dev environment setup (VS Code, GitHub, Supabase account).  
+* **Milestone Project**: Publish a GitHub repo with 10 powerful, reusable prompts \+ short demo video.
+
+**Month 2: UI/UX Design & Graphics for Developers**
+
+* **Objectives**: Create beautiful, user-friendly interfaces using ethical AI assistance.  
+* **Weekly Breakdown**:  
+  * Week 1: UI/UX principles, user flows, accessibility.  
+  * Week 2: Ethical AI graphics (prompting for original assets).  
+  * Week 3: Figma prototyping (interactive mocks).  
+  * Week 4: Design systems and iteration.  
+* **Milestone Project**: Publish 3 complete app/web prototypes on Figma Community (used in Months 3–4).
+
+**Month 3: AI-Powered Web Development**
+
+* **Objectives**: Build and deploy modern websites using Month 2 designs.  
+* **Weekly Breakdown**:  
+  * Week 1: Next.js \+ React fundamentals.  
+  * Week 2: Styling, responsiveness, Supabase integration.  
+  * Week 3: AI features (chatbots, recommendations).  
+  * Week 4: Deployment (Vercel) and optimization.  
+* **Milestone Project**: Launch a fully functional website (live URL) with Supabase backend.
+
+**Month 4: AI-Powered Mobile Development**
+
+* **Objectives**: Build cross-platform mobile apps with Flutter/Dart.  
+* **Weekly Breakdown**:  
+  * Week 1: Flutter \+ Dart setup and basics.  
+  * Week 2: Implementing designs from Month 2\.  
+  * Week 3: State management, Supabase auth/data.  
+  * Week 4: Testing and publishing (APK/web build).  
+* **Milestone Project**: Publish a working mobile app (live web build or APK share).
+
+**Month 5: Core Programming Mastery with AI**
+
+* **Objectives**: Gain fluency in Python, Dart, and JavaScript/TypeScript.  
+* **Weekly Breakdown**:  
+  * Week 1: Python mastery (functions, OOP, libraries).  
+  * Week 2: Dart deep dive (async, null safety).  
+  * Week 3: Advanced React/Next.js patterns.  
+  * Week 4: APIs, error handling, AI-assisted debugging.  
+* **Milestone Project**: Enhance a previous project (Month 3 or 4\) with new backend features; relaunch.
+
+**Month 6: AI Agents & Automation Development**
+
+* **Objectives**: Build autonomous agents that perform real tasks.  
+* **Weekly Breakdown**:  
+  * Week 1: Agent concepts and planning.  
+  * Week 2: Simple Python agents (e.g., email/social automation).  
+  * Week 3: Multi-tool agents with memory.  
+  * Week 4: Deployment and real-world testing.  
+* **Milestone Project**: Launch a public AI agent demo (GitHub \+ live example).
+
+**Month 7: Model Fine-Tuning & Customization**
+
+* **Objectives**: Ethically customize LLMs for specific use cases.  
+* **Weekly Breakdown**:  
+  * Week 1: Pre-trained models and fine-tuning basics.  
+  * Week 2: Ethical data preparation.  
+  * Week 3: LoRA fine-tuning (Python \+ Hugging Face).  
+  * Week 4: Evaluation and integration.  
+* **Milestone Project**: Fine-tune a model (e.g., local language support) and integrate into a prior app.
+
+**Month 8: Advanced AI Integrations**
+
+* **Objectives**: Connect systems securely (MCP servers, multi-agent).  
+* **Weekly Breakdown**:  
+  * Week 1: API design and security.  
+  * Week 2: MCP protocol for agent-tool communication.  
+  * Week 3: Supabase Edge Functions scaling.  
+  * Week 4: Multi-modal and real-time systems.  
+* **Milestone Project**: Build and deploy an integrated AI system (app \+ agents \+ MCP).
+
+**Month 9: Capstone Projects, Portfolio & Career Launch**
+
+* **Objectives**: Ship production-grade products; prepare for income generation.  
+* **Weekly Breakdown**:  
+  * Week 1: Project ideation and planning.  
+  * Weeks 2–3: Full development (individual or small team).  
+  * Week 4: Portfolio site, freelancing strategy, client pitching.  
+* **Milestone Projects**: Launch 2–3 complete products; build public portfolio site. Final showcase event.
+
+**Support & Community**
+
+* Weekly live webinars (recorded).  
+* Dedicated mentorship (book sessions).  
+* Peer community for collaboration.  
+* 24/7 AI study assistant access.  
+* Ethical AI guidelines reinforced every module.
+
+ 
+
