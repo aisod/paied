@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { MarkdownRenderer } from '@/components/ui/MarkdownRenderer'
 import { MonthNavigation } from '@/components/curriculum/MonthNavigation'
 import { MonthHeader } from '@/components/curriculum/MonthHeader'
+import { ModuleCards } from '@/components/curriculum/ModuleCards'
 import { getMarkdownFile } from '@/lib/utils/markdown'
 import { programMonths } from '@/lib/constants/programData'
 
@@ -73,7 +74,7 @@ export default async function MonthPage({ params }: PageProps) {
   const nextMonth = monthNum < 9 ? monthNum + 1 : null
 
   return (
-    <div className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-white pb-20 md:pb-0">
       {/* Paper-like grid background - subtle and elegant */}
       <div 
         className="absolute inset-0"
@@ -90,6 +91,21 @@ export default async function MonthPage({ params }: PageProps) {
       <div className="relative z-10">
         {/* Header */}
         <MonthHeader monthNum={monthNum} title={monthData.title} focus={monthData.focus} />
+
+        {/* Module Cards - Show like timeline on curriculum page */}
+        <section className="py-12 sm:py-16 bg-gray-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 mb-4">
+                Modules & Weeks
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Explore each week's curriculum and objectives
+              </p>
+            </div>
+            <ModuleCards content={markdownData.content} />
+          </div>
+        </section>
 
         {/* Content */}
         <section className="py-12">

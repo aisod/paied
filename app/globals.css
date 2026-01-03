@@ -189,3 +189,38 @@
     transform: translateY(10px);
   }
 }
+
+/* Mobile app feel */
+@media (max-width: 768px) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+  }
+  
+  /* Safe area for bottom navigation */
+  main {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+/* Bottom navigation animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Line clamp utility for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

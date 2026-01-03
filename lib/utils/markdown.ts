@@ -50,6 +50,15 @@ export async function getAllMarkdownFiles(): Promise<MarkdownFile[]> {
   const files = [
     'A Word from the CEO – Joel Tiago.md',
     'AISOD PAIED Program Syllabus (2026 Edition).md',
+    'PAIED Program_ Detailed Curriculum for Month 1 – AI Essentials & Foundations.md',
+    'PAIED Program_ Detailed Curriculum for Month 2 – UI_UX Design & Graphics for Developers.md',
+    'PAIED Program_ Detailed Curriculum for Month 3 – AI-Powered Web Development.md',
+    'PAIED Program_ Detailed Curriculum for Month 4 – AI-Powered Mobile Development.md',
+    'PAIED Program_ Detailed Curriculum for Month 5 – Core Programming Mastery with AI.md',
+    'PAIED Program_ Detailed Curriculum for Month 6 – AI Agents & Automation Development.md',
+    'PAIED Program_ Detailed Curriculum for Month 7 – Model Fine-Tuning & Customization.md',
+    'PAIED Program_ Detailed Curriculum for Month 8 – Advanced AI Integrations.md',
+    'PAIED Program_ Detailed Curriculum for Month 9 – Capstone Projects, Portfolio & Career Launch.md',
     'Conclusion_ Your Journey to Practical AI Mastery (PAIED Program).md'
   ]
 

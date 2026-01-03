@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/sections/Footer'
+import { BottomNavigation } from '@/components/layout/BottomNavigation'
+import { PWAInstaller } from '@/components/PWAInstaller'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
@@ -31,6 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0ea5e9" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="PAIED" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -142,11 +150,13 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-50 text-gray-900`}>
         <ErrorBoundary>
           <LanguageProvider>
+            <PWAInstaller />
             <Navbar />
-            <main className="min-h-screen pt-16">
+            <main className="min-h-screen pt-16 pb-20 md:pb-0">
               {children}
             </main>
             <Footer />
+            <BottomNavigation />
           </LanguageProvider>
         </ErrorBoundary>
       </body>
