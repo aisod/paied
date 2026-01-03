@@ -11,6 +11,16 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'AISOD PAIED Program - Free AI Engineering Course 2026',
   description: 'Transform from beginner to AI Engineer/Developer for FREE. 9-month practical program with hands-on projects, ethical AI focus, and career launch. Start February 6th, 2026.',
+  icons: {
+    icon: [
+      { url: '/images/AISOD Institute logo new.png', type: 'image/png' },
+      { url: '/images/AISOD Institute logo new.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/AISOD Institute logo new.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/images/AISOD Institute logo new.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 }
 
 export default function RootLayout({

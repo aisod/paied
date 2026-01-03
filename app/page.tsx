@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: 'Transform from beginner to AI Engineer/Developer for FREE. 9-month practical program with hands-on projects, ethical AI focus, and career launch.',
     images: [
       {
-        url: '/opengraph-image',
+        url: '/images/paied-social-preview.png',
         width: 1200,
         height: 630,
         alt: 'AISOD PAIED Program - Free AI Engineering Course'
@@ -30,7 +30,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: '@aisodinstitute',
-    creator: '@aisodinstitute'
+    creator: '@aisodinstitute',
+    images: ['/images/paied-social-preview.png'],
   }
 }
 
