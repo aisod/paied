@@ -53,8 +53,15 @@ export function BottomNavigation() {
   ]
   
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg md:hidden" suppressHydrationWarning>
-      <div className="flex items-center justify-around h-16 px-2">
+    <nav 
+      className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg md:hidden touch-manipulation" 
+      style={{ 
+        paddingBottom: 'env(safe-area-inset-bottom, 0)',
+        height: 'calc(4rem + env(safe-area-inset-bottom, 0))'
+      }}
+      suppressHydrationWarning
+    >
+      <div className="flex items-center justify-around h-16 px-2" style={{ paddingLeft: 'env(safe-area-inset-left, 0.5rem)', paddingRight: 'env(safe-area-inset-right, 0.5rem)' }}>
         {navItems.map((item) => {
           // Only check active state on client to avoid hydration mismatch
           const isActive = mounted && (pathname === item.href || 
@@ -64,11 +71,12 @@ export function BottomNavigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center justify-center flex-1 h-full transition-all duration-300 relative ${
+              className={`flex flex-col items-center justify-center flex-1 min-h-[64px] transition-all duration-300 relative touch-manipulation active:scale-95 ${
                 isActive
-                  ? 'text-gray-900 scale-110'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'text-gray-900'
+                  : 'text-gray-500 active:text-gray-700'
               }`}
+              aria-label={item.label}
             >
               <item.icon className={`w-6 h-6 mb-1 transition-transform duration-300 ${
                 isActive ? 'scale-110' : ''
@@ -79,7 +87,7 @@ export function BottomNavigation() {
                 {item.label}
               </span>
               {isActive && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-900 rounded-t-full" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-900 rounded-t-full" style={{ bottom: 'env(safe-area-inset-bottom, 0)' }} />
               )}
             </Link>
           )

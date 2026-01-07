@@ -92,11 +92,12 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Mobile-first with proper touch target */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+            className="md:hidden p-3 min-w-[44px] min-h-[44px] rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 touch-manipulation flex items-center justify-center"
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
@@ -117,7 +118,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-4 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors text-sm"
+                className="block px-4 py-3 min-h-[44px] text-gray-700 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 rounded-md transition-colors text-sm touch-manipulation flex items-center"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
@@ -133,11 +134,12 @@ export function Navbar() {
                       setLanguage('en')
                       setIsOpen(false)
                     }}
-                    className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                    className={`px-4 py-2.5 min-h-[44px] text-xs font-medium transition-colors touch-manipulation ${
                       language === 'en'
                         ? 'bg-gray-900 text-white'
-                        : 'bg-white text-gray-700'
+                        : 'bg-white text-gray-700 active:bg-gray-50'
                     }`}
+                    aria-label="Switch to English"
                   >
                     EN
                   </button>
@@ -146,11 +148,12 @@ export function Navbar() {
                       setLanguage('pt')
                       setIsOpen(false)
                     }}
-                    className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+                    className={`px-4 py-2.5 min-h-[44px] text-xs font-medium transition-colors touch-manipulation ${
                       language === 'pt'
                         ? 'bg-gray-900 text-white'
-                        : 'bg-white text-gray-700'
+                        : 'bg-white text-gray-700 active:bg-gray-50'
                     }`}
+                    aria-label="Switch to Portuguese"
                   >
                     PT
                   </button>
@@ -162,10 +165,10 @@ export function Navbar() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`block px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors ${
+                  className={`block px-4 py-3 min-h-[44px] rounded-md text-xs sm:text-sm font-medium transition-colors touch-manipulation flex items-center ${
                     link.primary
-                      ? 'bg-gray-900 text-white hover:bg-gray-800'
-                      : 'text-gray-700 hover:text-gray-900 border border-gray-300'
+                      ? 'bg-gray-900 text-white hover:bg-gray-800 active:bg-gray-700'
+                      : 'text-gray-700 hover:text-gray-900 active:bg-gray-50 border border-gray-300'
                   }`}
                   onClick={() => setIsOpen(false)}
                 >

@@ -22,8 +22,8 @@ export function Hero() {
         }}
       />
       
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center space-y-12">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="text-center space-y-8 sm:space-y-10 lg:space-y-12">
           {/* Minimal badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200 text-gray-600 text-xs font-normal">
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
@@ -54,8 +54,8 @@ export function Hero() {
             <span className="font-normal text-gray-700">{language === 'pt' ? 'completamente GRÁTIS' : 'completely FREE'}</span>.
           </p>
 
-          {/* Stats - refined spacing and typography */}
-          <div className="flex flex-wrap justify-center gap-8 sm:gap-12 md:gap-16 pt-6">
+          {/* Stats - refined spacing and typography - Mobile-first */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 pt-4 sm:pt-6">
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-medium text-gray-900 mb-1">{PROGRAM_DATA.stats.duration}</div>
               <div className="text-xs text-gray-500 font-normal">{language === 'pt' ? 'Treinamento' : 'Training'}</div>

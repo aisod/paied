@@ -17,16 +17,39 @@ export function FadeIn({
   duration = 0.6,
   className = ''
 }: FadeInProps) {
-  // #region agent log
-  useEffect(() => {
-    fetch('http://127.0.0.1:7242/ingest/e523e8a1-77e3-4f5b-8cd9-f76bae5c8729',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'FadeIn.tsx:16',message:'FadeIn component entry',data:{isServer:false},timestamp:Date.now(),sessionId:'debug-session',runId:'run4',hypothesisId:'G'})}).catch(()=>{});
-  }, []);
-  // #endregion
-
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // Check if element is already in viewport on mount
+    const checkInitialVisibility = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect()
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight
+        const windowWidth = window.innerWidth || document.documentElement.clientWidth
+        
+        // Check if element is in viewport (with some margin)
+        const isInViewport = 
+          rect.top < windowHeight + 200 && 
+          rect.bottom > -200 &&
+          rect.left < windowWidth + 200 &&
+          rect.right > -200
+        
+        if (isInViewport) {
+          // Element is already visible, show it immediately
+          setTimeout(() => setIsVisible(true), delay)
+          return true
+        }
+      }
+      return false
+    }
+
+    // Check immediately on mount
+    if (checkInitialVisibility()) {
+      return // Already visible, no need for observer
+    }
+
+    // Set up observer for elements not yet in view
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,15 +57,29 @@ export function FadeIn({
           observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: '-100px' }
+      { 
+        threshold: 0.01, // Lower threshold to trigger earlier
+        rootMargin: '100px' // Changed from -100px to 100px to trigger earlier
+      }
     )
 
     if (ref.current) {
       observer.observe(ref.current)
     }
 
-    return () => observer.disconnect()
-  }, [delay])
+    // Fallback: make visible after 1 second if observer hasn't fired
+    // This ensures content is never permanently hidden
+    const fallbackTimeout = setTimeout(() => {
+      if (!isVisible) {
+        setIsVisible(true)
+      }
+    }, Math.max(1000, delay + 500))
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(fallbackTimeout)
+    }
+  }, [delay, isVisible])
 
   const directionTransforms = {
     up: 'translateY(30px)',

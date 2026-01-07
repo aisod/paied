@@ -7,9 +7,22 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "debug-build": "node debug-build.js"
+    "debug-build": "node debug-build.js",
+    "cap:add": "npx cap add",
+    "cap:sync": "npx cap sync",
+    "cap:open": "npx cap open",
+    "build:mobile": "node build-mobile.js",
+    "cap:build": "npm run build:mobile && npx cap sync",
+    "android:build": "npm run cap:build && cd android && gradlew.bat assembleRelease",
+    "android:apk": "npm run android:build"
   },
   "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/app": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/haptics": "^6.0.0",
+    "@capacitor/keyboard": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
     "gray-matter": "^4.0.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
@@ -24,6 +37,7 @@
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^6.0.0",
     "@types/node": "^20.11.0",
     "@types/pdfkit": "^0.17.4",
     "@types/react": "^18.2.0",

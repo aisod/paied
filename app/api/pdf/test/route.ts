@@ -3,10 +3,10 @@ import PDFDocument from 'pdfkit'
 
 export const runtime = 'nodejs'
 
-export async function GET() {
+export async function GET(): Promise<Response> {
   console.log('[TEST PDF] ====== TEST ROUTE CALLED ======')
   
-  return new Promise((resolve, reject) => {
+  return new Promise<Response>((resolve, reject) => {
     try {
       console.log('[TEST PDF] Creating PDFDocument...')
       const doc = new PDFDocument()

@@ -60,3 +60,8 @@ logs
 
 # Netlify
 .netlify/
+
+# Capacitor / Android
+android/
+ios/
+api.backup/

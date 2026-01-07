@@ -22,28 +22,6 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: any) {
-    // #region agent log
-    if (typeof window !== 'undefined') {
-      fetch('http://127.0.0.1:7242/ingest/e523e8a1-77e3-4f5b-8cd9-f76bae5c8729', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          location: 'ErrorBoundary.tsx:componentDidCatch',
-          message: 'Error caught by boundary',
-          data: {
-            errorMessage: error.message,
-            errorStack: error.stack,
-            componentStack: errorInfo.componentStack,
-            errorName: error.name
-          },
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          runId: 'run6',
-          hypothesisId: 'I'
-        })
-      }).catch(() => {})
-    }
-    // #endregion
     console.error('Error caught by boundary:', error, errorInfo)
   }
 

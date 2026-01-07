@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // Enable static export for Capacitor
   images: {
+    unoptimized: true, // Required for static export
     domains: ['aisodx.tech', 'www.aisod.tech', 'www.aisodinstitute.tech', 'paied.aisodx.tech'],
     formats: ['image/webp', 'image/avif'],
+    // Mobile optimization
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

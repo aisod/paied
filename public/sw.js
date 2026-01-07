@@ -1,12 +1,19 @@
-const CACHE_NAME = 'paied-v1'
+const CACHE_NAME = 'paied-v2'
+const RUNTIME_CACHE = 'paied-runtime-v2'
 const urlsToCache = [
   '/',
   '/curriculum',
   '/about',
   '/download',
   '/contact',
-  '/images/AISOD Institute logo new.png'
+  '/images/AISOD Institute logo new.png',
+  '/manifest.json'
 ]
+
+// Cache all curriculum pages
+for (let i = 1; i <= 9; i++) {
+  urlsToCache.push(`/curriculum/${i}`)
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -25,7 +32,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName !== CACHE_NAME && cacheName !== RUNTIME_CACHE) {
             return caches.delete(cacheName)
           }
         })
@@ -51,69 +58,54 @@ self.addEventListener('fetch', (event) => {
   
   // CRITICAL: Skip API routes - they should never be cached by service worker
   // This prevents binary data corruption in PDF downloads
-  // Also skip any requests with Accept header containing application/pdf
   const acceptHeader = request.headers.get('accept') || request.headers.get('Accept') || ''
   if (url.pathname.startsWith('/api/') || acceptHeader.includes('application/pdf')) {
-    // Explicitly do NOT intercept - let the browser handle it directly
-    // Don't call event.respondWith() at all, which means the request bypasses the service worker
     return
   }
   
+  // Network-first strategy with cache fallback for better offline support
   event.respondWith(
-    caches.match(request)
-      .then((cachedResponse) => {
-        // Return cached version if available
-        if (cachedResponse) {
-          return cachedResponse
+    fetch(request)
+      .then((response) => {
+        // Don't cache non-GET requests or non-successful responses
+        if (request.method !== 'GET' || !response || response.status !== 200) {
+          return response
         }
         
-        // Fetch from network
-        return fetch(request)
-          .then((response) => {
-            // Don't cache non-GET requests, non-successful responses, or non-http(s) URLs
-            if (
-              request.method !== 'GET' || 
-              !response || 
-              response.status !== 200 ||
-              !url.protocol.startsWith('http')
-            ) {
-              return response
+        // Clone and cache the response
+        const responseToCache = response.clone()
+        caches.open(RUNTIME_CACHE)
+          .then((cache) => {
+            try {
+              cache.put(request, responseToCache)
+            } catch (err) {
+              console.log('Cache put failed:', err)
             }
-            
-            // Clone the response for caching
-            const responseToCache = response.clone()
-            
-            // Cache the response (don't await to avoid blocking)
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                try {
-                  cache.put(request, responseToCache)
-                } catch (err) {
-                  // Silently fail if caching fails (e.g., chrome-extension URLs)
-                  console.log('Cache put failed:', err)
-                }
-              })
-              .catch(() => {
-                // Silently fail
-              })
-            
-            return response
           })
-          .catch(() => {
-            // Network failed, return offline fallback for documents
-            if (request.destination === 'document') {
-              return caches.match('/').then((fallback) => fallback || new Response('Offline', { status: 503 }))
-            }
-            // Return a valid Response for other requests
-            return new Response('Network error', { status: 503 })
-          })
+          .catch(() => {})
+        
+        return response
       })
       .catch(() => {
-        // Return a valid Response even on error
-        if (request.destination === 'document') {
-          return caches.match('/').then((fallback) => fallback || new Response('Offline', { status: 503 }))
-        }
-        return new Response('Cache error', { status: 503 })
+        // Network failed, try cache
+        return caches.match(request)
+          .then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse
+            }
+            
+            // Fallback for navigation requests
+            if (request.destination === 'document') {
+              return caches.match('/').then((fallback) => 
+                fallback || new Response('Offline - Content not available', { 
+                  status: 503,
+                  headers: { 'Content-Type': 'text/html' }
+                })
+              )
+            }
+            
+            return new Response('Offline', { status: 503 })
+          })
       })
   )
 })
