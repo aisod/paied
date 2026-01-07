@@ -212,7 +212,17 @@ body {
 }
 
 /* Mobile-specific optimizations */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
+  /* Ensure bottom navigation is visible on mobile and tablets */
+  nav[data-mobile-nav="true"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    z-index: 9999 !important;
+  }
+  
   /* Prevent horizontal scroll */
   html, body {
     overflow-x: hidden;
@@ -234,6 +244,13 @@ body {
   /* Prevent pull-to-refresh on non-scrollable areas */
   main {
     overscroll-behavior-y: contain;
+  }
+}
+
+/* Desktop: Hide bottom navigation */
+@media (min-width: 1024px) {
+  nav[data-mobile-nav="true"] {
+    display: none !important;
   }
 }
 

@@ -54,7 +54,8 @@ export function BottomNavigation() {
   
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg md:hidden touch-manipulation" 
+      data-mobile-nav="true"
+      className="fixed bottom-0 left-0 right-0 z-[9999] bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-lg lg:hidden touch-manipulation" 
       style={{ 
         paddingBottom: 'env(safe-area-inset-bottom, 0)',
         height: 'calc(4rem + env(safe-area-inset-bottom, 0))'
