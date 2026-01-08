@@ -7,70 +7,44 @@ export function DownloadContent() {
   const { t } = useTranslation()
 
   const handleDownload = async () => {
-    // #region agent log
-    const SERVER_ENDPOINT = 'http://127.0.0.1:7242/ingest/e523e8a1-77e3-4f5b-8cd9-f76bae5c8729'
-    fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:11',message:'Download initiated',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-    // #endregion
     try {
-      // #region agent log
-      fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:14',message:'Fetching PDF from API',data:{url:'/api/pdf'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-      // #endregion
-      // Use cache: 'no-store' to bypass service worker cache completely
-      const response = await fetch('/api/pdf', {
-        cache: 'no-store',
+      // Use static PDF file generated at build time
+      // This works in static export mode (for Capacitor/mobile app)
+      const pdfUrl = '/AISOD-PAIED-Program-Complete-Manual-2026.pdf'
+      
+      // Fetch the static PDF file
+      const response = await fetch(pdfUrl, {
+        cache: 'no-cache', // Always get fresh version
         headers: {
           'Accept': 'application/pdf',
         }
       })
       
-      // #region agent log
-      const contentType = response.headers.get('content-type')
-      fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:17',message:'Response received',data:{status:response.status,statusText:response.statusText,contentType,ok:response.ok},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-      // #endregion
-      
       if (!response.ok) {
-        // #region agent log
-        const errorText = await response.text()
-        fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:24',message:'Response not OK',data:{status:response.status,errorText},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-        // #endregion
         throw new Error(`Download failed: ${response.status} ${response.statusText}`)
       }
       
+      const contentType = response.headers.get('content-type')
       if (!contentType || !contentType.includes('application/pdf')) {
-        // #region agent log
-        fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:30',message:'Invalid content type',data:{contentType},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-        // #endregion
         throw new Error(`Invalid content type: ${contentType}. Expected application/pdf`)
       }
       
       const blob = await response.blob()
       
-      // #region agent log
-      fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:40',message:'Blob created',data:{blobSize:blob.size,blobType:blob.type},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
-      
       if (blob.size === 0) {
-        // #region agent log
-        fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:46',message:'Empty blob detected',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-        // #endregion
-        throw new Error('Downloaded file is empty')
+        throw new Error('Downloaded file is empty. PDF may not have been generated. Please run: npm run generate:pdf')
       }
       
-      // Validate blob content - check first bytes
+      // Validate PDF signature
       const blobArrayBuffer = await blob.slice(0, 4).arrayBuffer()
       const firstBytes = new Uint8Array(blobArrayBuffer)
       const firstBytesStr = String.fromCharCode(...firstBytes)
-      // #region agent log
-      fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:52',message:'Blob first bytes checked',data:{firstBytes:firstBytesStr,firstBytesArray:Array.from(firstBytes)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-      // #endregion
       
       if (firstBytesStr !== '%PDF') {
-        // #region agent log
-        fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:55',message:'Invalid PDF signature in blob',data:{firstBytes:firstBytesStr},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
-        // #endregion
-        throw new Error(`Invalid PDF signature in blob. Got: ${firstBytesStr}, expected: %PDF`)
+        throw new Error(`Invalid PDF file. Got: ${firstBytesStr}, expected: %PDF`)
       }
       
+      // Trigger download
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
@@ -79,16 +53,9 @@ export function DownloadContent() {
       a.click()
       window.URL.revokeObjectURL(url)
       document.body.removeChild(a)
-      
-      // #region agent log
-      fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:31',message:'Download completed successfully',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
     } catch (error) {
-      // #region agent log
-      fetch(SERVER_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'components/download/DownloadContent.tsx:33',message:'Download error caught',data:{error:error instanceof Error ? error.message : String(error)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-      // #endregion
       console.error('Download failed:', error)
-      alert(t.download.error)
+      alert(error instanceof Error ? error.message : t.download.error || 'Download failed. Please try again.')
     }
   }
 
