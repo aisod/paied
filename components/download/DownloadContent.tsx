@@ -8,11 +8,11 @@ export function DownloadContent() {
 
   const handleDownload = async () => {
     try {
-      // Use API route to generate PDF dynamically from markdown files
-      // This ensures the PDF always contains the latest curriculum content
-      const pdfUrl = '/api/pdf'
+      // Use static PDF file from public folder (works with static export)
+      // The PDF is generated during build time via npm run generate:pdf
+      const pdfUrl = '/AISOD-PAIED-Program-Complete-Manual-2026.pdf'
       
-      // Fetch the PDF from the API route
+      // Fetch the static PDF file
       const response = await fetch(pdfUrl, {
         cache: 'no-cache', // Always get fresh version
         headers: {
@@ -32,7 +32,7 @@ export function DownloadContent() {
       const blob = await response.blob()
       
       if (blob.size === 0) {
-        throw new Error('Downloaded file is empty. Please try again.')
+        throw new Error('Downloaded file is empty. PDF may not have been generated during build.')
       }
       
       // Validate PDF signature
