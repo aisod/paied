@@ -8,11 +8,11 @@ export function DownloadContent() {
 
   const handleDownload = async () => {
     try {
-      // Use static PDF file generated at build time
-      // This works in static export mode (for Capacitor/mobile app)
-      const pdfUrl = '/AISOD-PAIED-Program-Complete-Manual-2026.pdf'
+      // Use API route to generate PDF dynamically from markdown files
+      // This ensures the PDF always contains the latest curriculum content
+      const pdfUrl = '/api/pdf'
       
-      // Fetch the static PDF file
+      // Fetch the PDF from the API route
       const response = await fetch(pdfUrl, {
         cache: 'no-cache', // Always get fresh version
         headers: {
@@ -32,7 +32,7 @@ export function DownloadContent() {
       const blob = await response.blob()
       
       if (blob.size === 0) {
-        throw new Error('Downloaded file is empty. PDF may not have been generated. Please run: npm run generate:pdf')
+        throw new Error('Downloaded file is empty. Please try again.')
       }
       
       // Validate PDF signature
