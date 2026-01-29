@@ -2,21 +2,31 @@
   "name": "paied-website",
   "version": "1.0.1",
   "private": true,
+
   "scripts": {
     "dev": "next dev",
-    "build": "npm run generate:pdf && next build",
+
+    "build": "next build",
+    "build:full": "npm run generate:pdf && next build",
+
+    "pages:build": "npx @cloudflare/next-on-pages",
+
     "start": "next start",
     "lint": "next lint",
+
     "debug-build": "node debug-build.js",
     "generate:pdf": "npx tsx scripts/generate-pdf.ts",
+
     "cap:add": "npx cap add",
     "cap:sync": "npx cap sync",
     "cap:open": "npx cap open",
-    "build:mobile": "npm run generate:pdf && node build-mobile.js",
+
+    "build:mobile": "npm run build:full && node build-mobile.js",
     "cap:build": "npm run build:mobile && npx cap sync",
     "android:build": "npm run cap:build && cd android && gradlew.bat assembleRelease",
     "android:apk": "npm run android:build"
   },
+
   "dependencies": {
     "@capacitor/android": "^6.0.0",
     "@capacitor/app": "^6.0.0",
@@ -37,6 +47,7 @@
     "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1"
   },
+
   "devDependencies": {
     "@capacitor/cli": "^6.0.0",
     "@types/node": "^20.11.0",
