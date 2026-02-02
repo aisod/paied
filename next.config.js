@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Enable static export for Capacitor
+  //output: 'export', // Enable static export for Capacitor
   images: {
     unoptimized: true, // Required for static export
     domains: ['aisodx.tech', 'www.aisod.tech', 'www.aisodinstitute.tech', 'paied.aisodx.tech'],
