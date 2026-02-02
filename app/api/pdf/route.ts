@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { generatePAIEDPDF } from '@/lib/utils/pdf'
 import fs from 'fs'
 import path from 'path'
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 
 // Ensure this API route runs in Node.js runtime (required for jsPDF and fs)
 export const runtime = 'nodejs'
