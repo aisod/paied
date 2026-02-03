@@ -2,21 +2,30 @@
   "name": "paied-website",
   "version": "1.0.1",
   "private": true,
+
   "scripts": {
     "dev": "next dev",
-    "build": "npm run generate:pdf && next build",
+
+    "build": "next build",
+
+    "build:full": "npm run generate:pdf && next build",
+
     "start": "next start",
     "lint": "next lint",
+
     "debug-build": "node debug-build.js",
     "generate:pdf": "npx tsx scripts/generate-pdf.ts",
+
     "cap:add": "npx cap add",
     "cap:sync": "npx cap sync",
     "cap:open": "npx cap open",
-    "build:mobile": "npm run generate:pdf && node build-mobile.js",
+
+    "build:mobile": "npm run build:full && node build-mobile.js",
     "cap:build": "npm run build:mobile && npx cap sync",
     "android:build": "npm run cap:build && cd android && gradlew.bat assembleRelease",
     "android:apk": "npm run android:build"
   },
+
   "dependencies": {
     "@capacitor/android": "^6.0.0",
     "@capacitor/app": "^6.0.0",
@@ -24,26 +33,33 @@
     "@capacitor/haptics": "^6.0.0",
     "@capacitor/keyboard": "^6.0.0",
     "@capacitor/status-bar": "^6.0.0",
+
     "gray-matter": "^4.0.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
-    "next": "^14.2.0",
     "pdfkit": "^0.17.2",
+
+    "next": "^14.2.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
+
     "react-markdown": "^9.0.0",
     "react-syntax-highlighter": "^16.1.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1"
   },
+
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.6.0",
+
     "@capacitor/cli": "^6.0.0",
     "@types/node": "^20.11.0",
     "@types/pdfkit": "^0.17.4",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "@types/react-syntax-highlighter": "^15.5.13",
+
     "autoprefixer": "^10.4.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.0",
